@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bear Nar — Photographe</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:#050505;color:#e8e8e8;font-family:'Barlow',sans-serif;font-weight:500;overflow-x:hidden;min-height:100%}
+html,body{background:#050505;color:#e8e8e8;font-family:'Inter',sans-serif;font-weight:400;overflow-x:hidden;min-height:100%}
 :root{--bg:#050505;--bg2:#0d0d0d;--bg3:#161616;--gold:#c4995f;--gold2:#ddb87a;--w:#ffffff;--w2:#e8e8e8;--gr:#888;--bd:#222;--bdr:#333}
 
 /* LOADER */
@@ -25,7 +25,7 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 .nav-brand{display:flex;align-items:center;gap:1.2rem;text-decoration:none}
 .nav-logo-img{height:48px;width:auto;filter:brightness(0) invert(1)}
 .nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center}
-.nav-links a{color:var(--gr);text-decoration:none;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;transition:color .25s}
+.nav-links a{color:#bbb;text-decoration:none;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;transition:color .25s;font-weight:400}
 .nav-links a:hover{color:var(--w)}
 .nav-insta{color:var(--gold)!important;border-bottom:1px solid var(--gold);padding-bottom:1px}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
@@ -42,7 +42,7 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4.5rem,11vw,9rem);font-weight:300;line-height:.9;letter-spacing:.06em;color:#fff;text-align:center}
 .hero-name em{font-style:italic;display:inline;color:#fff}
 .hero-rule{width:60px;height:1px;background:var(--gold);margin:2rem auto;opacity:0;animation:fadeUp .8s ease .8s forwards}
-.hero-sub{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gr);opacity:0;animation:fadeUp .8s ease .95s forwards;text-align:center}
+.hero-sub{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:#aaa;opacity:0;animation:fadeUp .8s ease .95s forwards;text-align:center;font-weight:500}
 .hero-quote{display:none}
 .hero-quote-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.6}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -66,14 +66,14 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 
 /* GALLERY */
 #gallery{background:#050505;padding:6rem 4rem}
-.sec-ey{font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.sec-ey{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;font-weight:500}
 .sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#fff}
 .sec-h em{font-style:italic}
 .sec-rule{width:40px;height:1px;background:var(--gold);margin-top:1rem}
 .cat-tabs{display:flex;border-bottom:1px solid var(--bd);margin:3rem 0;overflow-x:auto;scrollbar-width:none}
 .cat-tabs::-webkit-scrollbar{display:none}
-.ctab{background:none;border:none;border-bottom:1px solid transparent;margin-bottom:-1px;padding:.6rem 1.2rem;font-family:'Inter',sans-serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gr);cursor:pointer;white-space:nowrap;transition:all .2s}
-.ctab.on{color:var(--gold);border-bottom-color:var(--gold)}
+.ctab{background:none;border:none;border-bottom:1px solid transparent;margin-bottom:-1px;padding:.6rem 1.2rem;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#999;cursor:pointer;white-space:nowrap;transition:all .2s;font-weight:400}
+.ctab.on{color:var(--gold);border-bottom-color:var(--gold);font-weight:500}
 .ctab:hover:not(.on){color:var(--w2)}
 .ctab.locked{color:#333}
 .masonry{columns:3;column-gap:.8rem}
@@ -148,11 +148,11 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 
 /* CONTACT */
 #contact{background:var(--bg2);padding:6rem 4rem}
-.ctt-item{display:flex;align-items:center;gap:1.2rem;text-decoration:none;color:#fff;padding:1.4rem 1.6rem;border:1px solid var(--bd);background:#050505;transition:all .3s;margin-bottom:.8rem}
+.ctt-item{display:flex;align-items:center;gap:1.2rem;text-decoration:none;color:#fff;padding:1.4rem 1.6rem;border:1px solid #444;background:#0d0d0d;transition:all .3s;margin-bottom:.8rem}
 .ctt-item:hover{border-color:#fff;background:#0d0d0d}
 .ctt-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
-.ctt-lbl{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gr);margin-bottom:.3rem}
-.ctt-val{font-size:.85rem;color:#fff}
+.ctt-lbl{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;font-weight:500}
+.ctt-val{font-size:.88rem;color:#fff;font-weight:400}
 .ctt-arr{color:var(--gr);font-size:1.2rem;margin-left:auto;transition:all .3s}
 .ctt-item:hover .ctt-arr{transform:translateX(5px);color:#fff}
 .insta-hero-card{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:2.2rem 2rem;border:1px solid #fff;background:#000;text-decoration:none;color:#fff;transition:all .3s;margin-bottom:1rem}
@@ -367,7 +367,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
       <h1 class="hero-name">Bear <em>Nar</em></h1>
     </div>
     <div class="hero-rule"></div>
-    <p class="hero-sub">Photographe &mdash; Nice, France</p>
+    <p class="hero-sub" id="siteHeroSub">Photographe &mdash; Nice, France</p>
   </div>
   <div class="hero-quote"><div class="hero-quote"><div class="hero-quote">
     <p class="hero-quote-text">« Une image vaut mieux que mille mots »</p>
@@ -379,11 +379,11 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
 </div>
 <section id="quotes">
   <div class="quote-card rv">
-    <p class="quote-text">« Les détails font la perfection et la perfection n'est pas un détail »</p>
+    <p class="quote-text" id="siteQuote1">« Les détails font la perfection et la perfection n'est pas un détail »</p>
     <div class="quote-rule"></div>
   </div>
   <div class="quote-card rv">
-    <p class="quote-text">« L'art ne consiste pas à représenter des choses nouvelles, mais à représenter avec nouveauté »</p>
+    <p class="quote-text" id="siteQuote2">« L'art ne consiste pas à représenter des choses nouvelles, mais à représenter avec nouveauté »</p>
     <div class="quote-rule"></div>
   </div>
 </section>
@@ -399,7 +399,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <button class="ctab" data-cat="mode">Mode</button>
     <button class="ctab" data-cat="art">Art</button>
     <button class="ctab" data-cat="evenement">Événement</button>
-    <button class="ctab locked" data-cat="adulte" id="adultTab">Adulte +18</button>
+    <button class="ctab" data-cat="paysage">Paysage</button>
+    <button class="ctab" data-cat="creation">Création</button>
+    <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
   </div>
   <div class="masonry rv" id="grd"></div>
 </section>
@@ -428,9 +430,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <h2 class="sec-h" style="margin-bottom:0">La vision<br>de <em>l'artiste</em></h2>
     <p class="about-txt" id="aboutTxt">Photographe passionné basé à Nice, Bear Nar capture les émotions authentiques et les instants uniques. Lumière, composition, émotion — trois piliers d'un travail photographique toujours en mouvement.</p>
     <div class="about-stats">
-      <div class="astat"><div class="n" id="sAns">3+</div><div class="l">Expérience</div></div>
-      <div class="astat"><div class="n" id="sProj">100+</div><div class="l">Projets</div></div>
-      <div class="astat"><div class="n" id="sClients">80+</div><div class="l">Clients</div></div>
+      <div class="astat"><div class="n" id="sAns">3+</div><div class="l" id="sAnsLabel">Expérience</div></div>
+      <div class="astat"><div class="n" id="sProj">100+</div><div class="l" id="sProjLabel">Projets</div></div>
+      <div class="astat"><div class="n" id="sClients">80+</div><div class="l" id="sClientsLabel">Clients</div></div>
     </div>
   </div>
 </section>
@@ -530,7 +532,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="mode">Mode</option>
           <option value="art">Art</option>
           <option value="evenement">Événement</option>
-          <option value="adulte">Adulte +18</option>
+          <option value="paysage">Paysage</option>
+          <option value="creation">Création</option>
+          <option value="adulte">Nu Artistique +18</option>
         </select>
       </div>
       <div class="dz" id="dz">
@@ -555,7 +559,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
             <option value="mode">Mode</option>
             <option value="art">Art</option>
             <option value="evenement">Événement</option>
-            <option value="adulte">Adulte +18</option>
+          <option value="paysage">Paysage</option>
+          <option value="creation">Création</option>
+          <option value="adulte">Nu Artistique +18</option>
           </select>
           <label style="background:var(--gold);color:#000;padding:.38rem 1rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
             Choisir fichiers
@@ -580,7 +586,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="mode">Mode</option>
           <option value="art">Art</option>
           <option value="evenement">Événement</option>
-          <option value="adulte">Adulte +18</option>
+          <option value="paysage">Paysage</option>
+          <option value="creation">Création</option>
+          <option value="adulte">Nu Artistique +18</option>
         </select>
         <button class="bulk-btn" id="bulkCatBtn">Appliquer</button>
         <button class="bulk-btn" id="bulkDeselBtn">Tout désélectionner</button>
@@ -594,7 +602,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab" data-filter="mode">Mode</button>
         <button class="ctab" data-filter="art">Art</button>
         <button class="ctab" data-filter="evenement">Événement</button>
-        <button class="ctab" data-filter="adulte">Adulte +18</button>
+        <button class="ctab" data-filter="paysage">Paysage</button>
+        <button class="ctab" data-filter="creation">Création</button>
+        <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
       </div>
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap">
         <button class="adm-sb" style="margin:0;padding:.4rem 1rem;font-size:.52rem" id="selAllBtn">Tout sélectionner</button>
@@ -615,18 +625,39 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
       <div class="dz" id="dzLogo"><input type="file" id="logoIn" accept="image/*" style="display:none"><div class="dz-ic">&#8679;</div><p class="dz-t"><strong>Nouveau logo</strong> — PNG transparent recommandé</p></div>
     </div>
     <div class="adm-pg" id="pg-info">
-      <div class="adm-pt">Infos & contacts</div>
-      <p class="adm-ps">Personnalisez les textes et les informations de contact</p>
-      <div class="adm-sl">Statistiques affichées</div>
-      <div class="adm-fg">
-        <div class="adm-field"><label>Années d'expérience</label><input type="text" class="adm-inp" id="iAns" placeholder="3+"></div>
-        <div class="adm-field"><label>Projets réalisés</label><input type="text" class="adm-inp" id="iProj" placeholder="100+"></div>
-        <div class="adm-field"><label>Clients satisfaits</label><input type="text" class="adm-inp" id="iClients" placeholder="80+"></div>
-        <div class="adm-field"><label>WhatsApp (avec indicatif)</label><input type="text" class="adm-inp" id="iWa" placeholder="+33612345678"></div>
+      <div class="adm-pt">Textes du site</div>
+      <p class="adm-ps">Modifiez tous les textes depuis ici — sauvegardé en temps réel</p>
+
+      <div class="adm-sl">&#128444; La vision de l'artiste</div>
+      <div class="adm-field"><label>Texte biographie (section À propos)</label>
+        <textarea class="adm-inp" id="iBio" rows="6" placeholder="Photographe passionné basé à Nice, Bear Nar capture les émotions authentiques..."></textarea>
       </div>
-      <div class="adm-sl">Biographie</div>
-      <textarea class="adm-inp" id="iBio" rows="5" placeholder="Votre présentation..."></textarea>
-      <button class="adm-sb" id="saveBtn">Enregistrer</button>
+
+      <div class="adm-sl">&#128197; Statistiques</div>
+      <div class="adm-fg">
+        <div class="adm-field"><label>Chiffre 1</label><input type="text" class="adm-inp" id="iAns" placeholder="3+"></div>
+        <div class="adm-field"><label>Label 1</label><input type="text" class="adm-inp" id="iAnsLabel" placeholder="Expérience"></div>
+        <div class="adm-field"><label>Chiffre 2</label><input type="text" class="adm-inp" id="iProj" placeholder="100+"></div>
+        <div class="adm-field"><label>Label 2</label><input type="text" class="adm-inp" id="iProjLabel" placeholder="Projets"></div>
+        <div class="adm-field"><label>Chiffre 3</label><input type="text" class="adm-inp" id="iClients" placeholder="80+"></div>
+        <div class="adm-field"><label>Label 3</label><input type="text" class="adm-inp" id="iClientsLabel" placeholder="Clients"></div>
+      </div>
+
+      <div class="adm-sl">&#128483; Citations affichées</div>
+      <div class="adm-field"><label>Citation 1</label>
+        <input type="text" class="adm-inp" id="iQuote1" placeholder="Les détails font la perfection et la perfection n'est pas un détail"></div>
+      <div class="adm-field"><label>Citation 2</label>
+        <input type="text" class="adm-inp" id="iQuote2" placeholder="L'art ne consiste pas à représenter des choses nouvelles, mais à représenter avec nouveauté"></div>
+
+      <div class="adm-sl">&#9999; Hero</div>
+      <div class="adm-field"><label>Sous-titre (sous Bear Nar)</label>
+        <input type="text" class="adm-inp" id="iHeroSub" placeholder="Photographe — Nice, France"></div>
+
+      <div class="adm-sl">&#128222; Contact</div>
+      <div class="adm-field"><label>WhatsApp (avec indicatif)</label>
+        <input type="text" class="adm-inp" id="iWa" placeholder="+33612345678"></div>
+
+      <button class="adm-sb" id="saveBtn">Enregistrer tous les textes</button>
     </div>
     <div class="adm-pg" id="pg-settings">
       <div class="adm-pt">Paramètres</div>
@@ -666,7 +697,13 @@ function applySettings(s){
   if(s.ans)document.getElementById('sAns').textContent=s.ans;
   if(s.proj)document.getElementById('sProj').textContent=s.proj;
   if(s.clients)document.getElementById('sClients').textContent=s.clients;
+  if(s.ansLabel){var el=document.getElementById('sAnsLabel');if(el)el.textContent=s.ansLabel;}
+  if(s.projLabel){var el2=document.getElementById('sProjLabel');if(el2)el2.textContent=s.projLabel;}
+  if(s.clientsLabel){var el3=document.getElementById('sClientsLabel');if(el3)el3.textContent=s.clientsLabel;}
   if(s.bio)document.getElementById('aboutTxt').textContent=s.bio;
+  if(s.quote1){var q1=document.getElementById('siteQuote1');if(q1)q1.textContent='« '+s.quote1+' »';}
+  if(s.quote2){var q2=document.getElementById('siteQuote2');if(q2)q2.textContent='« '+s.quote2+' »';}
+  if(s.heroSub){var hs=document.getElementById('siteHeroSub');if(hs)hs.textContent=s.heroSub;}
   if(s.wa){var a=document.getElementById('waItem');a.href='https://wa.me/'+s.wa.replace(/\D/g,'');a.style.display='flex';document.getElementById('waVal').textContent=s.wa;}
 }
 function applyLogo(src){
@@ -695,7 +732,7 @@ function rGal(cat){
   if(!cat)cat='all';
   var ph=allPhotos;
   if(cat==='adulte'){if(!ageOK){openGate();return;}ph=ph.filter(function(p){return p.cat==='adulte';});}
-  else if(cat==='all')ph=ph.filter(function(p){return ageOK||p.cat!=='adulte';});
+  else if(cat==='all')ph=ph.filter(function(p){return p.cat!=='adulte';});
   else ph=ph.filter(function(p){return p.cat===cat;});
   lbArr=ph;
   var g=document.getElementById('grd');g.innerHTML='';
@@ -719,8 +756,8 @@ function admClose(){document.getElementById('admWrap').classList.remove('on');}
 function admLogin(){var p=document.getElementById('admPass').value;if(p===admPass){authed=true;document.getElementById('admPass').value='';document.getElementById('admAuth').style.display='none';admPage('upload');rStats();}else{var e=document.getElementById('authErr');e.style.display='block';setTimeout(function(){e.style.display='none';},2500);}}
 function admLogout(){authed=false;document.getElementById('admAuth').style.display='flex';admClose();}
 function admPage(id){document.querySelectorAll('.adm-pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.adm-ni').forEach(function(n){n.classList.remove('on');});document.getElementById('pg-'+id).classList.add('on');document.getElementById('ni-'+id).classList.add('on');if(id==='manage'){selectedIds.clear();updateBulkBar();rAdm(currentFilter);}if(id==='info')fillInfo();if(id==='settings')rStats();}
-function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Adulte +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
-function catOpts(sel){return['portrait','mode','art','evenement','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
+function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Nu Artistique +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
+function catOpts(sel){return['portrait','mode','art','evenement','paysage','creation','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
 
 // SÉLECTION MULTIPLE
 function toggleSelect(id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);updateBulkBar();}
@@ -863,9 +900,15 @@ async function fillInfo(){
   if(s.clients)document.getElementById('iClients').value=s.clients;
   if(s.wa)document.getElementById('iWa').value=s.wa;
   if(s.bio)document.getElementById('iBio').value=s.bio;
+  if(s.ansLabel)document.getElementById('iAnsLabel').value=s.ansLabel;
+  if(s.projLabel)document.getElementById('iProjLabel').value=s.projLabel;
+  if(s.clientsLabel)document.getElementById('iClientsLabel').value=s.clientsLabel;
+  if(s.quote1)document.getElementById('iQuote1').value=s.quote1;
+  if(s.quote2)document.getElementById('iQuote2').value=s.quote2;
+  if(s.heroSub)document.getElementById('iHeroSub').value=s.heroSub;
 }
 async function saveInfo(){
-  var map={ans:'iAns',proj:'iProj',clients:'iClients',wa:'iWa',bio:'iBio'};
+  var map={ans:'iAns',proj:'iProj',clients:'iClients',wa:'iWa',bio:'iBio',ansLabel:'iAnsLabel',projLabel:'iProjLabel',clientsLabel:'iClientsLabel',quote1:'iQuote1',quote2:'iQuote2',heroSub:'iHeroSub'};
   var s=lsGet('bnSettings')||{};
   for(var k in map){var v=document.getElementById(map[k]).value;if(v)s[k]=v;}
   lsSet('bnSettings',s);
