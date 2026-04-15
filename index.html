@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bear Nar — Photographe</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#050505;color:#e8e8e8;font-family:'Inter',sans-serif;font-weight:400;overflow-x:hidden;min-height:100%}
@@ -37,7 +37,7 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 .hero-bg.loaded{display:block}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,#050505 0%,rgba(5,5,5,.3) 100%)}
 .hero-content{position:relative;z-index:2}
-.hero-logo-big{height:180px;width:auto;filter:brightness(0) invert(1);display:block;margin:0 auto 2.5rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
+.hero-logo-big{height:220px;width:auto;filter:brightness(0) invert(1);display:block;margin:0 auto 2rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
 .hero-name-wrap{display:block;margin-bottom:2rem;opacity:0;animation:fadeUp .8s ease .55s forwards}
 .hero-name{font-family:'Pinyon Script',cursive;font-size:clamp(4.5rem,12vw,10rem);font-weight:400;line-height:1;letter-spacing:.04em;color:#fff;text-align:center}
 .hero-name em{font-style:normal;display:inline;color:#fff}
@@ -273,7 +273,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
   #hero{padding:0 1.5rem 5rem}
   .hero-name{font-size:clamp(3rem,12vw,5rem)}
   .hero-quote{display:none}
-  .hero-logo-big{height:70px}
+  .hero-logo-big{height:220px;width:auto;filter:brightness(0) invert(1);display:block;margin:0 auto 2rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
   #quotes{grid-template-columns:1fr;background:#050505;gap:0}
   .quote-card{border-top:1px solid var(--bd)}
   #gallery,#services,#about,#contact,#copyright{padding:4.5rem 1.5rem}
@@ -402,7 +402,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <button class="ctab" data-cat="paysage">Paysage</button>
     <button class="ctab" data-cat="creation">Création</button>
     <button class="ctab" data-cat="couples">Couples</button>
-    <button class="ctab" data-cat="grosses">Grosses</button>
+    <button class="ctab" data-cat="grosses">Grossesse</button>
     <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
   </div>
   <div class="masonry rv" id="grd"></div>
@@ -537,7 +537,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
           <option value="couples">Couples</option>
-          <option value="grosses">Grosses</option>
+          <option value="grosses">Grossesse</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
       </div>
@@ -566,9 +566,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
           <option value="couples">Couples</option>
-          <option value="grosses">Grosses</option>
+          <option value="grosses">Grossesse</option>
           <option value="couples">Couples</option>
-            <option value="grosses">Grosses</option>
+            <option value="grosses">Grossesse</option>
             <option value="adulte">Nu Artistique +18</option>
           </select>
           <label style="background:var(--gold);color:#000;padding:.38rem 1rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
@@ -597,9 +597,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
           <option value="couples">Couples</option>
-          <option value="grosses">Grosses</option>
+          <option value="grosses">Grossesse</option>
           <option value="couples">Couples</option>
-          <option value="grosses">Grosses</option>
+          <option value="grosses">Grossesse</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
         <button class="bulk-btn" id="bulkCatBtn">Appliquer</button>
@@ -617,7 +617,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab" data-filter="paysage">Paysage</button>
         <button class="ctab" data-filter="creation">Création</button>
         <button class="ctab" data-filter="couples">Couples</button>
-        <button class="ctab" data-filter="grosses">Grosses</button>
+        <button class="ctab" data-filter="grosses">Grossesse</button>
         <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
       </div>
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap">
