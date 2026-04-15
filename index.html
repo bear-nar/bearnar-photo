@@ -15,7 +15,7 @@ html,body{background:#050505;color:#e8e8e8;font-family:'Inter',sans-serif;font-w
 #loader{position:fixed;inset:0;background:#050505;z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity .9s ease}
 #loader.out{opacity:0;pointer-events:none}
 .ld-logo{height:90px;width:auto;filter:brightness(0) invert(1)}
-.ld-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:300;letter-spacing:.5em;color:#fff;text-transform:uppercase}
+.ld-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;letter-spacing:.2em;color:#fff}
 .ld-line{width:1px;height:60px;background:linear-gradient(to bottom,transparent,#fff,transparent);animation:ldLine 2s ease forwards}
 @keyframes ldLine{from{height:0;opacity:0}to{height:60px;opacity:1}}
 
@@ -39,8 +39,8 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 .hero-content{position:relative;z-index:2}
 .hero-logo-big{height:180px;width:auto;filter:brightness(0) invert(1);display:block;margin:0 auto 2.5rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
 .hero-name-wrap{display:block;margin-bottom:2rem;opacity:0;animation:fadeUp .8s ease .55s forwards}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4.5rem,11vw,9rem);font-weight:300;line-height:.9;letter-spacing:.06em;color:#fff;text-align:center}
-.hero-name em{font-style:italic;display:inline;color:#fff}
+.hero-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(5rem,13vw,11rem);font-weight:900;line-height:.88;letter-spacing:.12em;color:#fff;text-align:center}
+.hero-name em{font-style:normal;display:inline;color:#fff}
 .hero-rule{width:60px;height:1px;background:var(--gold);margin:2rem auto;opacity:0;animation:fadeUp .8s ease .8s forwards}
 .hero-sub{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:#aaa;opacity:0;animation:fadeUp .8s ease .95s forwards;text-align:center;font-weight:500}
 .hero-quote{display:none}
@@ -328,13 +328,13 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <div class="ml-h">Mentions Légales</div>
     <div class="ml-sub">Bear Nar Photography</div>
     <div class="ml-sh">Éditeur</div>
-    <p class="ml-p">Photographe indépendant — <strong style="color:#fff;font-weight:400">Bear Nar Photography</strong><br>Email : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5d7d0d4c7dbd4c78282f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a><br>Instagram : @bear__nar<br>Nice, France</p>
+    <p class="ml-p">Photographe indépendant — <strong style="color:#fff;font-weight:400">Bear Nar Photography</strong><br>Email : <span id="mlEmail">bearnar77&#64;gmail.com</span><br>Instagram : @bear__nar<br>Nice, France</p>
     <div class="ml-sh">Hébergement</div>
     <p class="ml-p">Vercel Inc. — 340 Pine Street Suite 1600, San Francisco CA 94104, USA</p>
     <div class="ml-sh">Propriété intellectuelle & Protection des œuvres</div>
     <div class="ml-warn">
       <div class="ml-warn-t">⚖ Protection légale des photographies</div>
-      <p class="ml-warn-p">L'ensemble des photographies publiées sur ce site sont des œuvres protégées par le droit d'auteur conformément aux articles L.111-1 et suivants du Code de la Propriété Intellectuelle français. Toute reproduction, représentation, modification, publication, transmission, dénaturation, utilisation commerciale ou non, partielle ou totale, par quelque procédé que ce soit (téléchargement, capture d'écran, impression, partage) est strictement interdite sans l'autorisation écrite préalable de l'auteur. Toute violation constitue une contrefaçon sanctionnée par les articles L.335-2 et L.335-3 du CPI, passible de <strong style="color:#ccc;font-weight:400">3 ans d'emprisonnement et 300 000 € d'amende</strong>. Pour toute demande de droits : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="22404743504c4350151562454f434b4e0c414d4f">[email&#160;protected]</a></p>
+      <p class="ml-warn-p">L'ensemble des photographies publiées sur ce site sont des œuvres protégées par le droit d'auteur conformément aux articles L.111-1 et suivants du Code de la Propriété Intellectuelle français. Toute reproduction, représentation, modification, publication, transmission, dénaturation, utilisation commerciale ou non, partielle ou totale, par quelque procédé que ce soit (téléchargement, capture d'écran, impression, partage) est strictement interdite sans l'autorisation écrite préalable de l'auteur. Toute violation constitue une contrefaçon sanctionnée par les articles L.335-2 et L.335-3 du CPI, passible de <strong style="color:#ccc;font-weight:400">3 ans d'emprisonnement et 300 000 € d'amende</strong>. Pour toute demande de droits : <a href="javascript:void(0)" onclick="window.location.href=atob('YmVhcm5hcjc3QGdtYWlsLmNvbQ==').replace(/^/,'mailto:')" class="__cf_email__" data-cfemail="22404743504c4350151562454f434b4e0c414d4f">[email&#160;protected]</a></p>
     </div>
     <div class="ml-sh">Contenu adulte — Nu artistique</div>
     <div class="ml-warn">
@@ -401,6 +401,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <button class="ctab" data-cat="evenement">Événement</button>
     <button class="ctab" data-cat="paysage">Paysage</button>
     <button class="ctab" data-cat="creation">Création</button>
+    <button class="ctab" data-cat="couples">Couples</button>
+    <button class="ctab" data-cat="grosses">Grosses</button>
     <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
   </div>
   <div class="masonry rv" id="grd"></div>
@@ -414,7 +416,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         Toutes les photographies publiées sur ce site sont des œuvres originales protégées par le <strong>Code de la Propriété Intellectuelle français (Art. L.111-1 et suivants)</strong>.
         Toute reproduction, téléchargement, capture d'écran, partage ou utilisation sans autorisation écrite est <strong>strictement interdite</strong> et constitue une contrefaçon
         sanctionnée par <strong>3 ans d'emprisonnement et 300 000 € d'amende</strong> (Art. L.335-2 et L.335-3 CPI).
-        <br>Pour toute demande de droits ou d'utilisation : <a href="/cdn-cgi/l/email-protection#593b3c382b37382b6e6e193e34383035773a3634" style="color:#ccc"><span class="__cf_email__" data-cfemail="2b494e4a59454a591c1c6b4c464a424705484446">[email&#160;protected]</span></a>
+        <br>Pour toute demande de droits ou d'utilisation : bearnar77&#64;gmail.com
       </p>
     </div>
   </div>
@@ -469,9 +471,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
       <div style="font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:#888;flex-shrink:0">Voir &#8594;</div>
     </a>
     <p style="font-size:.54rem;color:#333;text-align:center;margin-bottom:1rem;letter-spacing:.08em">Connexion Instagram requise pour le contenu sensible</p>
-    <a href="/cdn-cgi/l/email-protection#88eaede9fae6e9fabfbfc8efe5e9e1e4a6ebe7e5" class="ctt-item rv">
+    <a href="javascript:void(0)" onclick="window.location.href=atob('YmVhcm5hcjc3QGdtYWlsLmNvbQ==').replace(/^/,'mailto:')" class="ctt-item rv">
       <div class="ctt-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div><div class="ctt-lbl">Email</div><div class="ctt-val"><span class="__cf_email__" data-cfemail="e98b8c889b87889bdedea98e84888085c78a8684">[email&#160;protected]</span></div></div>
+      <div><div class="ctt-lbl">Email</div><div class="ctt-val" id="emailDisp">bearnar77&#64;gmail.com</div></div>
       <div class="ctt-arr">&#8594;</div>
     </a>
     <a href="#" class="ctt-item" id="waItem" style="display:none">
@@ -534,6 +536,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
+          <option value="couples">Couples</option>
+          <option value="grosses">Grosses</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
       </div>
@@ -561,7 +565,11 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
             <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
-          <option value="adulte">Nu Artistique +18</option>
+          <option value="couples">Couples</option>
+          <option value="grosses">Grosses</option>
+          <option value="couples">Couples</option>
+            <option value="grosses">Grosses</option>
+            <option value="adulte">Nu Artistique +18</option>
           </select>
           <label style="background:var(--gold);color:#000;padding:.38rem 1rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
             Choisir fichiers
@@ -588,6 +596,10 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
           <option value="creation">Création</option>
+          <option value="couples">Couples</option>
+          <option value="grosses">Grosses</option>
+          <option value="couples">Couples</option>
+          <option value="grosses">Grosses</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
         <button class="bulk-btn" id="bulkCatBtn">Appliquer</button>
@@ -604,6 +616,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab" data-filter="evenement">Événement</button>
         <button class="ctab" data-filter="paysage">Paysage</button>
         <button class="ctab" data-filter="creation">Création</button>
+        <button class="ctab" data-filter="couples">Couples</button>
+        <button class="ctab" data-filter="grosses">Grosses</button>
         <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
       </div>
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap">
@@ -676,7 +690,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     </div>
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 var SB_URL='https://cfxfqvjnxmykgahisvzt.supabase.co';
 var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmeGZxdmpueG15a2dhaGlzdnp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMTE5NzEsImV4cCI6MjA5MTU4Nzk3MX0.GX8URJnFTOPYfMlSVvag3hJm95AgOPxGOf7DgSVBHW8';
 var sb=null;
@@ -757,7 +771,7 @@ function admLogin(){var p=document.getElementById('admPass').value;if(p===admPas
 function admLogout(){authed=false;document.getElementById('admAuth').style.display='flex';admClose();}
 function admPage(id){document.querySelectorAll('.adm-pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.adm-ni').forEach(function(n){n.classList.remove('on');});document.getElementById('pg-'+id).classList.add('on');document.getElementById('ni-'+id).classList.add('on');if(id==='manage'){selectedIds.clear();updateBulkBar();rAdm(currentFilter);}if(id==='info')fillInfo();if(id==='settings')rStats();}
 function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Nu Artistique +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
-function catOpts(sel){return['portrait','mode','art','evenement','paysage','creation','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
+function catOpts(sel){return['portrait','mode','art','evenement','paysage','creation','couples','grosses','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
 
 // SÉLECTION MULTIPLE
 function toggleSelect(id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);updateBulkBar();}
