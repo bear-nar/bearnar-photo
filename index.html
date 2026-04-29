@@ -48,7 +48,7 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* STRIP */
-#strip{background:#050505;padding:2.5rem 0;overflow:hidden;position:relative;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);display:none}
+#strip{display:none!important}
 .strip-track{display:flex;gap:4px;width:max-content;animation:stripS 40s linear infinite}
 .strip-track:hover{animation-play-state:paused}
 @keyframes stripS{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -378,10 +378,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <p class="hero-quote-text">« Une image vaut mieux que mille mots »</p>
   </div>
 </section>
-<div id="strip">
-  <div class="sv l"></div><div class="sv r"></div>
-  <div class="strip-track" id="stripTrack"></div>
-</div>
+
 <section id="quotes">
   <div class="quote-card rv">
     <p class="quote-text" id="siteQuote1">« Les détails font la perfection et la perfection n'est pas un détail »</p>
@@ -398,14 +395,12 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <h2 class="sec-h">Ma <em>galerie</em></h2>
     <div class="sec-rule"></div>
   </div>
-  <div class="cat-tabs rv" id="catTabs">
-    <button class="ctab on" data-cat="all">Toutes</button>
-    <button class="ctab" data-cat="portrait">Portrait</button>
+    <div class="cat-tabs rv" id="catTabs" style="margin-bottom:2.5rem">
+    <button class="ctab on" data-cat="portrait">Portrait</button>
     <button class="ctab" data-cat="mode">Mode</button>
-    <button class="ctab" data-cat="art">Art</button>
+    <button class="ctab" data-cat="mon_univers">Mon Univers</button>
     <button class="ctab" data-cat="evenement">Événement</button>
     <button class="ctab" data-cat="paysage">Paysage</button>
-    <button class="ctab" data-cat="creation">Création</button>
     <button class="ctab" data-cat="couples">Couples</button>
     <button class="ctab" data-cat="grosses">Grossesses</button>
     <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
@@ -547,11 +542,10 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <select class="adm-inp" id="defCat" style="width:auto;padding:.42rem .8rem;margin:0">
           <option value="portrait">Portrait</option>
           <option value="mode">Mode</option>
-          <option value="art">Art</option>
+          <option value="mon_univers">Mon Univers</option>
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
-          <option value="creation">Création</option>
-          <option value="couples">Couples</option>
+          Couples</option>
           <option value="grosses">Grossessess</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
@@ -579,8 +573,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
             <option value="art">Art</option>
             <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
-          <option value="creation">Création</option>
-          <option value="couples">Couples</option>
+          Couples</option>
           <option value="grosses">Grossessess</option>
           <option value="couples">Couples</option>
             <option value="grosses">Grossessess</option>
@@ -607,11 +600,10 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="">Changer catégorie...</option>
           <option value="portrait">Portrait</option>
           <option value="mode">Mode</option>
-          <option value="art">Art</option>
+          <option value="mon_univers">Mon Univers</option>
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
-          <option value="creation">Création</option>
-          <option value="couples">Couples</option>
+          Couples</option>
           <option value="grosses">Grossessess</option>
           <option value="couples">Couples</option>
           <option value="grosses">Grossessess</option>
@@ -627,10 +619,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab on" data-filter="all">Toutes</button>
         <button class="ctab" data-filter="portrait">Portrait</button>
         <button class="ctab" data-filter="mode">Mode</button>
-        <button class="ctab" data-filter="art">Art</button>
+        <button class="ctab" data-filter="mon_univers">Mon Univers</button>
         <button class="ctab" data-filter="evenement">Événement</button>
         <button class="ctab" data-filter="paysage">Paysage</button>
-        <button class="ctab" data-filter="creation">Création</button>
         <button class="ctab" data-filter="couples">Couples</button>
         <button class="ctab" data-filter="grosses">Grossesses</button>
         <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
@@ -761,7 +752,7 @@ function rGal(cat){
   if(!cat)cat='all';
   var ph=allPhotos;
   if(cat==='adulte'){if(!ageOK){openGate();return;}ph=ph.filter(function(p){return p.cat==='adulte';});}
-  else if(cat==='all')ph=ph.filter(function(p){return p.cat!=='adulte';});
+  else if(cat==='mon_univers')ph=ph.filter(function(p){return p.cat==='mon_univers'||p.cat==='art'||p.cat==='creation';});
   else ph=ph.filter(function(p){return p.cat===cat;});
   lbArr=ph;
   var g=document.getElementById('grd');g.innerHTML='';
@@ -787,7 +778,7 @@ function admLogout(){authed=false;document.getElementById('admAuth').style.displ
 function setMobBtn(btn){document.querySelectorAll('.adm-mob-btn').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
 function admPage(id){document.querySelectorAll('.adm-pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.adm-ni').forEach(function(n){n.classList.remove('on');});document.getElementById('pg-'+id).classList.add('on');document.getElementById('ni-'+id).classList.add('on');if(id==='manage'){selectedIds.clear();updateBulkBar();rAdm(currentFilter);}if(id==='info')fillInfo();if(id==='settings')rStats();}
 function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Nu Artistique +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
-function catOpts(sel){return['portrait','mode','art','evenement','paysage','creation','couples','grosses','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
+function catOpts(sel){return['portrait','mode','mon_univers','evenement','paysage','couples','grosses','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
 
 // SÉLECTION MULTIPLE
 function toggleSelect(id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);updateBulkBar();}
@@ -970,7 +961,7 @@ async function init(){
   applySettings(s);
   if(sb){try{var r2=await sb.from('photos').select('*').order('created_at',{ascending:false});allPhotos=r2.data||[];}catch(e){allPhotos=lsGet('bnPhotos')||[];}}
   else allPhotos=lsGet('bnPhotos')||[];
-  updateCnt();rGal();rStrip();
+  updateCnt();rGal('portrait');
 }
 
 // EVENTS
@@ -1037,6 +1028,13 @@ document.getElementById('bulkCatBtn').addEventListener('click',bulkSetCat);
 document.getElementById('bulkDeselBtn').addEventListener('click',function(){selectedIds.clear();updateBulkBar();document.querySelectorAll('.ap').forEach(function(el){el.classList.remove('selected');});});
 document.getElementById('selAllBtn').addEventListener('click',function(){var ph=allPhotos;if(currentFilter!=='all')ph=ph.filter(function(p){return p.cat===currentFilter;});ph.forEach(function(p){selectedIds.add(p.id);});updateBulkBar();});
 window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('solid',window.scrollY>80);});
+document.querySelectorAll('#catTabs .ctab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#catTabs .ctab').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    rGal(b.getAttribute('data-cat'));
+  });
+});
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
 
