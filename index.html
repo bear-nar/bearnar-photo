@@ -88,9 +88,29 @@ nav.solid{background:rgba(5,5,5,.97);border-bottom:1px solid var(--bd)}
 .gi:hover::after{opacity:1}
 
 /* LIGHTBOX */
-#lb{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center}
+#lb{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;flex-direction:column}
 #lb.on{display:flex}
-#lbImg{max-width:90vw;max-height:90vh;object-fit:contain}
+#lbImg{max-width:88vw;max-height:80vh;object-fit:contain;transition:opacity .3s}
+/* MODE MUR */
+#lbWallView{display:none;width:100%;height:80vh;align-items:center;justify-content:center;background:#b8a898;position:relative}
+#lbWallView.on{display:flex}
+.wall-texture{position:absolute;inset:0;background:
+  repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(0,0,0,.03) 60px,rgba(0,0,0,.03) 61px),
+  repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(0,0,0,.03) 120px,rgba(0,0,0,.03) 121px),
+  linear-gradient(135deg,#c4b8a8 0%,#b0a494 40%,#bdb0a0 100%)}
+.wall-frame-wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
+.wall-frame{position:relative;box-shadow:
+  0 0 0 12px #8B7355,
+  0 0 0 16px #6B5535,
+  0 0 0 20px #8B7355,
+  8px 20px 60px rgba(0,0,0,.6),
+  0 4px 8px rgba(0,0,0,.4)}
+.wall-frame img{display:block;max-width:70vw;max-height:60vh;object-fit:contain}
+.wall-shadow{position:absolute;bottom:-30px;left:5%;right:5%;height:30px;background:radial-gradient(ellipse,rgba(0,0,0,.4) 0%,transparent 70%);filter:blur(8px)}
+/* TABS lightbox */
+.lb-tabs{display:flex;gap:.5rem;margin-bottom:1rem;z-index:2}
+.lb-tab{background:none;border:1px solid #444;color:#888;padding:.4rem 1.2rem;font-family:'Inter',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.lb-tab.on{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
 .lb-x{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:#666;font-size:2rem;cursor:pointer;line-height:1;transition:color .2s}
 .lb-x:hover{color:#fff}
 .lb-arr{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.2);font-size:2.5rem;cursor:pointer;padding:1rem;line-height:1;transition:color .2s}
@@ -322,9 +342,25 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
 </div>
 <div id="lb">
   <button class="lb-x" id="lbXBtn">&#215;</button>
+  <!-- TABS -->
+  <div class="lb-tabs">
+    <button class="lb-tab on" id="tabPhoto" onclick="lbShowPhoto()">Photo</button>
+    <button class="lb-tab" id="tabMur" onclick="lbShowWall()">&#128444; Sur le mur</button>
+  </div>
+  <!-- PHOTO -->
   <button class="lb-arr" id="lbPrev">&#8592;</button>
   <img id="lbImg" src="" alt="">
   <button class="lb-arr" id="lbNext">&#8594;</button>
+  <!-- MUR -->
+  <div id="lbWallView">
+    <div class="wall-texture"></div>
+    <div class="wall-frame-wrap">
+      <div class="wall-frame">
+        <img id="lbWallImg" src="" alt="">
+        <div class="wall-shadow"></div>
+      </div>
+    </div>
+  </div>
   <div class="lb-foot"><div class="lb-title" id="lbTitle"></div><div class="lb-count" id="lbCount"></div></div>
 </div>
 <div id="mlModal">
@@ -403,6 +439,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <button class="ctab" data-cat="paysage">Paysage</button>
     <button class="ctab" data-cat="couples">Couples</button>
     <button class="ctab" data-cat="grosses">Grossesses</button>
+    <button class="ctab" data-cat="sur_le_mur">Sur le mur</button>
+    <button class="ctab" data-cat="sur_le_mur">Sur le mur</button>
     <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
   </div>
   <div class="masonry rv" id="grd"></div>
@@ -431,10 +469,6 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <div class="sec-ey">À propos</div>
     <h2 class="sec-h" style="margin-bottom:0">La vision<br>de <em>l'artiste</em></h2>
     <p class="about-txt" id="aboutTxt">Photographe passionné basé à Nice, Bear Nar capture les émotions authentiques et les instants uniques. Lumière, composition, émotion — trois piliers d'un travail photographique toujours en mouvement.</p>
-    <div class="about-stats">
-      <div class="astat"><div class="n" id="sAns">3+</div><div class="l" id="sAnsLabel">Expérience</div></div>
-      <div class="astat"><div class="n" id="sProj">100+</div><div class="l" id="sProjLabel">Projets</div></div>
-      <div class="astat"><div class="n" id="sClients">80+</div><div class="l" id="sClientsLabel">Clients</div></div>
     </div>
   </div>
 </section>
@@ -547,6 +581,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="paysage">Paysage</option>
           Couples</option>
           <option value="grosses">Grossessess</option>
+          <option value="sur_le_mur">Sur le mur</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
       </div>
@@ -577,6 +612,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="grosses">Grossessess</option>
           <option value="couples">Couples</option>
             <option value="grosses">Grossessess</option>
+            <option value="sur_le_mur">Sur le mur</option>
+          <option value="sur_le_mur">Sur le mur</option>
             <option value="adulte">Nu Artistique +18</option>
           </select>
           <label style="background:var(--gold);color:#000;padding:.38rem 1rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
@@ -607,6 +644,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="grosses">Grossessess</option>
           <option value="couples">Couples</option>
           <option value="grosses">Grossessess</option>
+          <option value="sur_le_mur">Sur le mur</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
         <button class="bulk-btn" id="bulkCatBtn">Appliquer</button>
@@ -624,6 +662,8 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab" data-filter="paysage">Paysage</button>
         <button class="ctab" data-filter="couples">Couples</button>
         <button class="ctab" data-filter="grosses">Grossesses</button>
+        <button class="ctab" data-filter="sur_le_mur">Sur le mur</button>
+        <button class="ctab" data-filter="sur_le_mur">Sur le mur</button>
         <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
       </div>
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap">
@@ -653,15 +693,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <textarea class="adm-inp" id="iBio" rows="6" placeholder="Photographe passionné basé à Nice, Bear Nar capture les émotions authentiques..."></textarea>
       </div>
 
-      <div class="adm-sl">&#128197; Statistiques</div>
-      <div class="adm-fg">
-        <div class="adm-field"><label>Chiffre 1</label><input type="text" class="adm-inp" id="iAns" placeholder="3+"></div>
-        <div class="adm-field"><label>Label 1</label><input type="text" class="adm-inp" id="iAnsLabel" placeholder="Expérience"></div>
-        <div class="adm-field"><label>Chiffre 2</label><input type="text" class="adm-inp" id="iProj" placeholder="100+"></div>
-        <div class="adm-field"><label>Label 2</label><input type="text" class="adm-inp" id="iProjLabel" placeholder="Projets"></div>
-        <div class="adm-field"><label>Chiffre 3</label><input type="text" class="adm-inp" id="iClients" placeholder="80+"></div>
-        <div class="adm-field"><label>Label 3</label><input type="text" class="adm-inp" id="iClientsLabel" placeholder="Clients"></div>
-      </div>
+
 
       <div class="adm-sl">&#128483; Citations affichées</div>
       <div class="adm-field"><label>Citation 1</label>
@@ -765,7 +797,31 @@ function rGal(cat){
     g.appendChild(el);
   });
 }
-function lbOpen(i){lbIdx=i;var p=lbArr[i];document.getElementById('lbImg').src=p.url;document.getElementById('lbTitle').textContent=p.title||'';document.getElementById('lbCount').textContent=(i+1)+' / '+lbArr.length;document.getElementById('lb').classList.add('on');}
+function lbOpen(i){
+  lbIdx=i;var p=lbArr[i];
+  document.getElementById('lbImg').src=p.url;
+  document.getElementById('lbWallImg').src=p.url;
+  document.getElementById('lbTitle').textContent=p.title||'';
+  document.getElementById('lbCount').textContent=(i+1)+' / '+lbArr.length;
+  document.getElementById('lb').classList.add('on');
+  lbShowPhoto(); // toujours commencer sur photo
+}
+function lbShowPhoto(){
+  document.getElementById('lbImg').style.display='block';
+  document.getElementById('lbPrev').style.display='block';
+  document.getElementById('lbNext').style.display='block';
+  document.getElementById('lbWallView').classList.remove('on');
+  document.getElementById('tabPhoto').classList.add('on');
+  document.getElementById('tabMur').classList.remove('on');
+}
+function lbShowWall(){
+  document.getElementById('lbImg').style.display='none';
+  document.getElementById('lbPrev').style.display='none';
+  document.getElementById('lbNext').style.display='none';
+  document.getElementById('lbWallView').classList.add('on');
+  document.getElementById('tabPhoto').classList.remove('on');
+  document.getElementById('tabMur').classList.add('on');
+}
 function lbClose(){document.getElementById('lb').classList.remove('on');}
 function lbNav(d){lbIdx=(lbIdx+d+lbArr.length)%lbArr.length;lbOpen(lbIdx);}
 function openGate(){document.getElementById('gate').classList.add('on');}
@@ -778,7 +834,7 @@ function admLogout(){authed=false;document.getElementById('admAuth').style.displ
 function setMobBtn(btn){document.querySelectorAll('.adm-mob-btn').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
 function admPage(id){document.querySelectorAll('.adm-pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.adm-ni').forEach(function(n){n.classList.remove('on');});document.getElementById('pg-'+id).classList.add('on');document.getElementById('ni-'+id).classList.add('on');if(id==='manage'){selectedIds.clear();updateBulkBar();rAdm(currentFilter);}if(id==='info')fillInfo();if(id==='settings')rStats();}
 function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Nu Artistique +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
-function catOpts(sel){return['portrait','mode','mon_univers','evenement','paysage','couples','grosses','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
+function catOpts(sel){return['portrait','mode','mon_univers','evenement','paysage','couples','grosses','sur_le_mur','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
 
 // SÉLECTION MULTIPLE
 function toggleSelect(id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);updateBulkBar();}
