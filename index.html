@@ -403,6 +403,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <button class="ctab" data-cat="paysage">Paysage</button>
     <button class="ctab" data-cat="couples">Couples</button>
     <button class="ctab" data-cat="grosses">Grossesses</button>
+    <button class="ctab" data-cat="sur_le_mur">Sur le Mur</button>
     <button class="ctab locked" data-cat="adulte" id="adultTab">Nu Artistique +18</button>
   </div>
   <div class="masonry rv" id="grd"></div>
@@ -545,8 +546,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="mon_univers">Mon Univers</option>
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
-          Couples</option>
-          <option value="grosses">Grossessess</option>
+          <option value="couples">Couples</option>
+          <option value="grosses">Grossesses</option>
+          <option value="sur_le_mur">Sur le Mur</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
       </div>
@@ -570,13 +572,12 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <select class="adm-inp" id="manageCat" style="width:auto;padding:.38rem .7rem;margin:0;font-size:.6rem">
             <option value="portrait">Portrait</option>
             <option value="mode">Mode</option>
-            <option value="art">Art</option>
+            <option value="mon_univers">Mon Univers</option>
             <option value="evenement">Événement</option>
-          <option value="paysage">Paysage</option>
-          Couples</option>
-          <option value="grosses">Grossessess</option>
-          <option value="couples">Couples</option>
-            <option value="grosses">Grossessess</option>
+            <option value="paysage">Paysage</option>
+            <option value="couples">Couples</option>
+            <option value="grosses">Grossesses</option>
+            <option value="sur_le_mur">Sur le Mur</option>
             <option value="adulte">Nu Artistique +18</option>
           </select>
           <label style="background:var(--gold);color:#000;padding:.38rem 1rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
@@ -603,10 +604,9 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
           <option value="mon_univers">Mon Univers</option>
           <option value="evenement">Événement</option>
           <option value="paysage">Paysage</option>
-          Couples</option>
-          <option value="grosses">Grossessess</option>
           <option value="couples">Couples</option>
-          <option value="grosses">Grossessess</option>
+          <option value="grosses">Grossesses</option>
+          <option value="sur_le_mur">Sur le Mur</option>
           <option value="adulte">Nu Artistique +18</option>
         </select>
         <button class="bulk-btn" id="bulkCatBtn">Appliquer</button>
@@ -624,6 +624,7 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
         <button class="ctab" data-filter="paysage">Paysage</button>
         <button class="ctab" data-filter="couples">Couples</button>
         <button class="ctab" data-filter="grosses">Grossesses</button>
+        <button class="ctab" data-filter="sur_le_mur">Sur le Mur</button>
         <button class="ctab" data-filter="adulte">Nu Artistique +18</button>
       </div>
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap">
@@ -778,7 +779,7 @@ function admLogout(){authed=false;document.getElementById('admAuth').style.displ
 function setMobBtn(btn){document.querySelectorAll('.adm-mob-btn').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
 function admPage(id){document.querySelectorAll('.adm-pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.adm-ni').forEach(function(n){n.classList.remove('on');});document.getElementById('pg-'+id).classList.add('on');document.getElementById('ni-'+id).classList.add('on');if(id==='manage'){selectedIds.clear();updateBulkBar();rAdm(currentFilter);}if(id==='info')fillInfo();if(id==='settings')rStats();}
 function rStats(){var tot=allPhotos.length,adult=allPhotos.filter(function(p){return p.cat==='adulte';}).length;document.getElementById('admStats').innerHTML='<div class="adm-stat"><div class="adm-stat-n">'+tot+'</div><div class="adm-stat-l">Total</div></div><div class="adm-stat"><div class="adm-stat-n">'+(tot-adult)+'</div><div class="adm-stat-l">Publiques</div></div><div class="adm-stat"><div class="adm-stat-n">'+adult+'</div><div class="adm-stat-l">Nu Artistique +18</div></div><div class="adm-stat"><div class="adm-stat-n">'+selectedIds.size+'</div><div class="adm-stat-l">Sélectionnées</div></div>';}
-function catOpts(sel){return['portrait','mode','mon_univers','evenement','paysage','couples','grosses','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
+function catOpts(sel){return['portrait','mode','mon_univers','evenement','paysage','couples','grosses','sur_le_mur','adulte'].map(function(c){return'<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join('');}
 
 // SÉLECTION MULTIPLE
 function toggleSelect(id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);updateBulkBar();}
