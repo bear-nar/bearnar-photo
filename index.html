@@ -479,11 +479,6 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
     <div class="sec-ey">À propos</div>
     <h2 class="sec-h" style="margin-bottom:0">La vision<br>de <em>l'artiste</em></h2>
     <p class="about-txt" id="aboutTxt">Photographe passionné basé à Nice, Bear Nar capture les émotions authentiques et les instants uniques. Lumière, composition, émotion — trois piliers d'un travail photographique toujours en mouvement.</p>
-    <div class="about-stats">
-      <div class="astat"><div class="n" id="sAns">3+</div><div class="l" id="sAnsLabel">Expérience</div></div>
-      <div class="astat"><div class="n" id="sProj">100+</div><div class="l" id="sProjLabel">Projets</div></div>
-      <div class="astat"><div class="n" id="sClients">80+</div><div class="l" id="sClientsLabel">Clients</div></div>
-    </div>
   </div>
 </section>
 <section id="services">
@@ -1352,7 +1347,7 @@ function init3DScene(photoUrl){
   bx(4.8,0.016,3.2,0,0.008,-0.6,mRug,false,true);bx(4.2,0.019,2.6,0,0.019,-0.6,mRug2,false,false);
   // Sofa
   bx(3.0,0.2,0.95,0,0.1,-1.95,mSofa,true,true);bx(3.0,0.82,0.19,0,0.61,-2.4,mSofa,true,true);
-  bx(0.19,0.6,0.95,-1.42,0.5,-1.95,mSofa,true,true);bx(0.19,0.6,0.95,1.42,0.5,-1.95,mSofa,true,true);
+  bx(0.19,0.62,0.95,-1.42,0.31,-1.95,mSofa,true,true);bx(0.19,0.62,0.95,1.42,0.31,-1.95,mSofa,true,true);
   bx(0.84,0.13,0.74,-0.74,0.335,-1.95,mCu,true,false);bx(0.84,0.13,0.74,0,0.335,-1.95,mCu,true,false);bx(0.84,0.13,0.74,0.74,0.335,-1.95,mCu,true,false);
   bx(0.26,0.3,0.26,-0.88,0.62,-2.28,mCu2,true,false);bx(0.26,0.3,0.26,0,0.62,-2.28,mCu2,true,false);bx(0.26,0.3,0.26,0.88,0.62,-2.28,mCu2,true,false);
   [[-1.28,-1.58],[-1.28,-2.32],[1.28,-1.58],[1.28,-2.32]].forEach(function(p){cy(0.028,0.028,0.18,8,p[0],0.09,p[1],mMet,false,false);});
@@ -1425,13 +1420,13 @@ function init3DScene(photoUrl){
     // Update spotlight target
     sL.target.position.set(0,newY,-RD/2);sL.target.updateMatrixWorld();
     if(photoPlane)scene.remove(photoPlane);
-    photoPlane=new THREE.Mesh(new THREE.PlaneGeometry(pw,ph),new THREE.MeshStandardMaterial({map:tex,roughness:0.06,metalness:0.0}));
+    photoPlane=new THREE.Mesh(new THREE.PlaneGeometry(pw,ph),new THREE.MeshBasicMaterial({map:tex}));
     photoPlane.position.set(0,newY,fz+0.056);scene.add(photoPlane);
     bx(pw+ft*2+0.22,ph+ft*2+0.22,0.001,0,newY,fz-0.002,std({color:0x100608,roughness:1.0,metalness:0.0,transparent:true,opacity:0.45}),false,false);
   });
   // Lights
-  scene.add(new THREE.AmbientLight(0xFFF5E0,0.12));
-  scene.add(new THREE.HemisphereLight(0xFFF0D0,0x3A2810,0.55));
+  scene.add(new THREE.AmbientLight(0xFFF5E0,0.35));
+  scene.add(new THREE.HemisphereLight(0xFFF0D0,0x3A2810,0.75));
   var sL=new THREE.SpotLight(0xFFEDD0,3.0,6,Math.PI/6.5,0.4,1.5);
   var mL=new THREE.PointLight(0xFFE8A8,3.0,10,2);mL.position.set(0,RH-0.04,-2.2);mL.castShadow=true;mL.shadow.mapSize.set(1024,1024);mL.shadow.radius=4;mL.shadow.bias=-0.001;scene.add(mL);sL.position.set(0,RH-0.08,-1.1);sL.target.position.set(0,1.42,-RD/2);sL.castShadow=true;sL.shadow.mapSize.set(1024,1024);sL.shadow.bias=-0.002;scene.add(sL);scene.add(sL.target);
   var wL=new THREE.DirectionalLight(0xCCE4FF,0.9);wL.position.set(-5,3.2,-0.8);wL.target.position.set(0,0,0);wL.castShadow=true;wL.shadow.mapSize.set(512,512);wL.shadow.camera.near=0.1;wL.shadow.camera.far=18;scene.add(wL);scene.add(wL.target);
