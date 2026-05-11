@@ -313,9 +313,10 @@ footer{background:#000;padding:2.5rem 4rem;border-top:1px solid #1a1a1a;display:
 #wallView.ar-mode #wvVideo{display:block}
 #wvARFrame{position:absolute;z-index:5;display:none;cursor:move;user-select:none;touch-action:none}
 #wallView.ar-mode #wvARFrame{display:block}
-.wv-ar-border{position:absolute;inset:-15px;background:#180e06;box-shadow:inset 0 0 0 3px rgba(255,255,255,.06),0 20px 70px rgba(0,0,0,.75),0 4px 18px rgba(0,0,0,.6)}
-.wv-ar-mount{position:absolute;inset:-5px;background:#F2EEE8;pointer-events:none}
-#wvARImg{display:block;width:100%;height:100%;object-fit:cover;position:relative;z-index:2}
+.wv-ar-border{position:absolute;inset:-22px;background:linear-gradient(145deg,#2A1A0A 0%,#1A0E05 40%,#2E1C0C 100%);box-shadow:inset 0 0 0 2px rgba(255,220,140,.08),inset 2px 2px 0 rgba(255,255,255,.06),inset -2px -2px 0 rgba(0,0,0,.4),0 30px 80px rgba(0,0,0,.85),0 8px 24px rgba(0,0,0,.7),0 2px 6px rgba(0,0,0,.5)}
+.wv-ar-border::before{content:'';position:absolute;inset:4px;border:1px solid rgba(255,200,100,.06);pointer-events:none}
+.wv-ar-mount{position:absolute;inset:-6px;background:linear-gradient(145deg,#F8F4EE,#EDE7DF);box-shadow:inset 1px 1px 3px rgba(0,0,0,.08);pointer-events:none}
+#wvARImg{display:block;width:100%;height:100%;object-fit:fill;position:relative;z-index:2;image-rendering:high-quality}
 #wvARSizeBar{position:absolute;bottom:3.4rem;left:50%;transform:translateX(-50%);display:none;gap:.5rem;z-index:20;align-items:center}
 #wallView.ar-mode #wvARSizeBar{display:flex}
 .wv-sz-btn{background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);width:2.2rem;height:2.2rem;font-size:1.1rem;cursor:pointer;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s;font-family:'Inter',sans-serif}
@@ -1213,7 +1214,17 @@ function startARMode(){
 function positionARFrame(){
   var frame=document.getElementById('wvARFrame');var img=document.getElementById('wvARImg');
   var ar=(img.naturalWidth&&img.naturalHeight)?img.naturalWidth/img.naturalHeight:1.4;
-  frame.style.width=wvARW+'px';frame.style.height=(wvARW/ar)+'px';
+  var wv=document.getElementById('wallView');
+  var maxW=wv.clientWidth*0.88,maxH=wv.clientHeight*0.78;
+  // Fit inside screen respecting aspect ratio
+  var w=wvARW,h=wvARW/ar;
+  if(h>maxH){h=maxH;w=h*ar;}
+  if(w>maxW){w=maxW;h=w/ar;}
+  wvARW=w;
+  frame.style.width=w+'px';frame.style.height=h+'px';
+  // Clamp position inside screen
+  wvARX=Math.max(0,Math.min(wv.clientWidth-w,wvARX));
+  wvARY=Math.max(0,Math.min(wv.clientHeight-h,wvARY));
   frame.style.left=wvARX+'px';frame.style.top=wvARY+'px';
 }
 function resizeARFrame(dir){
@@ -1352,28 +1363,40 @@ function init3DScene(photoUrl){
   bx(0.66,0.004,0.66,0,RH-0.002,-2.2,mLED,false,false);
   // Picture frame
   var ft=0.105,fz=-RD/2+0.027;
-  var defW=2.0,defH=1.4;
-  var frM=bx(defW+ft*2,defH+ft*2,0.052,0,1.42,fz,mFr,true,false);
-  var mtM=bx(defW+0.038,defH+0.038,0.038,0,1.42,fz+0.028,mMt,false,false);
-  bx(0.007,0.16,0.007,0,1.42+defH/2+ft+0.08,fz+0.01,mCd,false,false);
-  bx(0.003,0.002,0.003,0,1.42+defH/2+ft+0.16,fz+0.01,std({color:0x888888,roughness:0.1,metalness:0.9}),false,false);
+  var defW=2.0,defH=1.4,frameY=1.42;
+  var frM=bx(defW+ft*2,defH+ft*2,0.052,0,frameY,fz,mFr,true,false);
+  var mtM=bx(defW+0.038,defH+0.038,0.038,0,frameY,fz+0.028,mMt,false,false);
+  var cordM=bx(0.007,0.16,0.007,0,frameY+defH/2+ft+0.08,fz+0.01,mCd,false,false);
+  var hookM=bx(0.003,0.002,0.003,0,frameY+defH/2+ft+0.16,fz+0.01,std({color:0x888888,roughness:0.1,metalness:0.9}),false,false);
   var photoPlane=null;
   var txL=new THREE.TextureLoader();txL.crossOrigin='anonymous';
   txL.load(photoUrl,function(tex){
     tex.encoding=THREE.sRGBEncoding;
     var ar=tex.image.width/tex.image.height;var pw,ph;
-    if(ar>=1){pw=Math.min(2.5,ar*1.5);ph=pw/ar;}else{ph=Math.min(2.2,1.5/ar);pw=ph*ar;}
+    // portrait: tall frame, keep it reasonable in height
+    if(ar>=1){pw=Math.min(2.5,ar*1.5);ph=pw/ar;}
+    else{ph=Math.min(2.4,1.5/ar);if(ph>2.4)ph=2.4;pw=ph*ar;}
+    // For portrait, lower frame center so it sits nicely on wall (bottom ~0.3m from floor)
+    var newY=ar>=1?1.42:Math.max(ph/2+0.3,1.42);
+    frM.position.y=newY;mtM.position.y=newY;
     frM.scale.set((pw+ft*2)/(defW+ft*2),(ph+ft*2)/(defH+ft*2),1);
     mtM.scale.set((pw+0.038)/(defW+0.038),(ph+0.038)/(defH+0.038),1);
+    // Update cord position
+    cordM.position.y=newY+ph/2+ft+0.08;hookM.position.y=newY+ph/2+ft+0.16;
+    // Camera looks at frame center
+    wvTarget.y=newY;wvUpdateCamera();
+    // Update spotlight target
+    sL.target.position.set(0,newY,-RD/2);sL.target.updateMatrixWorld();
     if(photoPlane)scene.remove(photoPlane);
     photoPlane=new THREE.Mesh(new THREE.PlaneGeometry(pw,ph),new THREE.MeshStandardMaterial({map:tex,roughness:0.06,metalness:0.0}));
-    photoPlane.position.set(0,1.42,fz+0.056);scene.add(photoPlane);
-    bx(pw+ft*2+0.2,ph+ft*2+0.2,0.001,0,1.42,fz-0.002,std({color:0x12080A,roughness:1.0,metalness:0.0,transparent:true,opacity:0.5}),false,false);
+    photoPlane.position.set(0,newY,fz+0.056);scene.add(photoPlane);
+    bx(pw+ft*2+0.22,ph+ft*2+0.22,0.001,0,newY,fz-0.002,std({color:0x100608,roughness:1.0,metalness:0.0,transparent:true,opacity:0.45}),false,false);
   });
   // Lights
-  scene.add(new THREE.AmbientLight(0xFFF5E0,0.16));
-  var mL=new THREE.PointLight(0xFFE8A8,3.4,10,2);mL.position.set(0,RH-0.04,-2.2);mL.castShadow=true;mL.shadow.mapSize.set(1024,1024);mL.shadow.radius=4;mL.shadow.bias=-0.001;scene.add(mL);
-  var sL=new THREE.SpotLight(0xFFEDD0,3.0,6,Math.PI/6.5,0.4,1.5);sL.position.set(0,RH-0.08,-1.1);sL.target.position.set(0,1.42,-RD/2);sL.castShadow=true;sL.shadow.mapSize.set(1024,1024);sL.shadow.bias=-0.002;scene.add(sL);scene.add(sL.target);
+  scene.add(new THREE.AmbientLight(0xFFF5E0,0.12));
+  scene.add(new THREE.HemisphereLight(0xFFF0D0,0x3A2810,0.55));
+  var sL=new THREE.SpotLight(0xFFEDD0,3.0,6,Math.PI/6.5,0.4,1.5);
+  var mL=new THREE.PointLight(0xFFE8A8,3.0,10,2);mL.position.set(0,RH-0.04,-2.2);mL.castShadow=true;mL.shadow.mapSize.set(1024,1024);mL.shadow.radius=4;mL.shadow.bias=-0.001;scene.add(mL);sL.position.set(0,RH-0.08,-1.1);sL.target.position.set(0,1.42,-RD/2);sL.castShadow=true;sL.shadow.mapSize.set(1024,1024);sL.shadow.bias=-0.002;scene.add(sL);scene.add(sL.target);
   var wL=new THREE.DirectionalLight(0xCCE4FF,0.9);wL.position.set(-5,3.2,-0.8);wL.target.position.set(0,0,0);wL.castShadow=true;wL.shadow.mapSize.set(512,512);wL.shadow.camera.near=0.1;wL.shadow.camera.far=18;scene.add(wL);scene.add(wL.target);
   var fL=new THREE.PointLight(0xFFCC60,1.5,3.8,2);fL.position.set(2.88,1.9,-1.24);scene.add(fL);
   var cL=new THREE.PointLight(0xFF8820,0.55,2.0,2);cL.position.set(0.38,0.58,-0.62);scene.add(cL);
