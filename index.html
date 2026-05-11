@@ -758,9 +758,9 @@ function applySettings(s){
   if(s.logo)applyLogo(s.logo);
   if(s.hero){var i=document.getElementById('heroImg');i.src=s.hero;i.style.display='block';}
   if(s.about)applyAbout(s.about);
-  if(s.ans)document.getElementById('sAns').textContent=s.ans;
-  if(s.proj)document.getElementById('sProj').textContent=s.proj;
-  if(s.clients)document.getElementById('sClients').textContent=s.clients;
+  if(s.ans){var elAns=document.getElementById('sAns');if(elAns)elAns.textContent=s.ans;}
+  if(s.proj){var elProj=document.getElementById('sProj');if(elProj)elProj.textContent=s.proj;}
+  if(s.clients){var elCl=document.getElementById('sClients');if(elCl)elCl.textContent=s.clients;}
   if(s.ansLabel){var el=document.getElementById('sAnsLabel');if(el)el.textContent=s.ansLabel;}
   if(s.projLabel){var el2=document.getElementById('sProjLabel');if(el2)el2.textContent=s.projLabel;}
   if(s.clientsLabel){var el3=document.getElementById('sClientsLabel');if(el3)el3.textContent=s.clientsLabel;}
